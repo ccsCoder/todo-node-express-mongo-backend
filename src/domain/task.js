@@ -13,6 +13,9 @@ const taskDomain = (function(Task){
 
             return newTask.save();
 
+        },
+        fetchAll: ()=> {
+            return Task.find();
         }
     }
     

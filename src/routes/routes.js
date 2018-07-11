@@ -32,11 +32,15 @@ router.get('/ping', (req, res) => {
 });
 
 //on all routes that end with "/tasks"
-router.route('/tasks').post((req, res)=> {
-    console.log(req.body);
-    
+router.route('/tasks')
+.post((req, res)=> {
     return taskDomain.create(req.body)
         .then(()=>res.json({message: 'Task Created'}))
+        .catch(err=>res.send(err));
+})
+.get((req, res)=> {
+    return taskDomain.fetchAll()
+        .then(tasks=>res.json(tasks))
         .catch(err=>res.send(err));
 });
 
